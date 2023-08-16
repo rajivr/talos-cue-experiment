@@ -1,0 +1,20 @@
+* Generating =secrets_bundle.cue=
+
+In a temporary directory do the following.
+
+#+begin_src sh :noeval
+  $ cue mod init
+  $ go mod init talos
+  $ go get github.com/siderolabs/talos/pkg/machinery/config/generate/secrets@v1.5.0-alpha.1
+  $ cue get go github.com/siderolabs/talos/pkg/machinery/config/generate/secrets
+#+end_src
+
+This will generate two files
+  - =cue.mod/gen/github.com/siderolabs/talos/pkg/machinery/config/generate/secrets/secrets_go_gen.cue=
+  - =cue.mod/gen/github.com/siderolabs/crypto/x509/x509_go_gen.cue=
+
+In the generated =x509_go_gen.cue=, the =#PEMEncodedCertificateAndKey= and =#PEMEncodedKey= definitions are assigned type of any (=_=). We can get the correct details of the type from here [fn:1]. With this we will be able to manually generate a =#SecretsBundle= definition (We rename =#Bundle= to =#SecretBundle=). Additionally for =#PEMEncodedCertificateAndKey= we set the default for =key= to =""=.
+
+* Footnotes
+
+[fn:1] [[https://github.com/siderolabs/crypto/blob/v0.4.0/x509/x509.go#L86-L96][GitHub - x509/x509.go]]

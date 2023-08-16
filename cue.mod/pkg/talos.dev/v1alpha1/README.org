@@ -1,0 +1,14 @@
+* Converting JSON Schema to CUE
+
+Download the JSON Schema from here [fn:1].
+
+Import the JSON Schema by doing the following.
+
+#+begin_src sh :noeval
+  $ cue import --package v1alpha1 v1alpha1_config.schema.json
+  $ rm -f v1alpha1_config.schema.json
+#+end_src
+
+* Footnotes
+
+[fn:1] [[https://github.com/siderolabs/talos/blob/v1.5.0-alpha.1/pkg/machinery/config/types/v1alpha1/schemas/v1alpha1_config.schema.json]] 

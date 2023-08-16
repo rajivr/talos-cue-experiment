@@ -1,0 +1,11 @@
+package v1alpha1
+
+#FeaturesConfig: {
+	rbac: *true | bool
+
+	stableHostname: *true | bool
+
+	apidCheckExtKeyUsage: *true | bool
+
+	diskQuotaSupport: *true | bool
+}
